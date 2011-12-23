@@ -1,0 +1,2 @@
+C:/RailsInstaller/Ruby1.9.2/bin/ruby.exe extconf.rb 
+extconf.rb:19:in `<main>': Only Darwin (Mac OS X) systems are supported (RuntimeError)
