@@ -73,7 +73,7 @@ describe User do
      it "should have a password confirmation attribute" do
        @user.should respond_to(:password_confirmation)
      end
-   end
+  end
    
   describe "password validations" do
 
@@ -128,10 +128,8 @@ describe User do
             @user.has_password?(@attr[:password]).should be_true
           end
 
-          it "should return false if the passwords don't match" do
-            @user.has_password?("invalid").should be_false
+          it "should return false if the passwords don't match" do 
           end
-        end
         
         describe "authenticate method" do
 
@@ -150,6 +148,8 @@ describe User do
               it "should return the user on email/password match" do
                 User.authenticate(@attr[:email], @attr[:password]).should == @user
               end
-            end
-          end
         end
+    end
+  end
+end
+      
