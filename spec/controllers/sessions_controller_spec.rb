@@ -5,22 +5,22 @@ describe SessionsController do
 
   describe "GET 'new'" do
     it "should be successful" do
-      get 'new'
+      get :new
       response.should be_success
     end
     
     it "should have the right title" do
       get :new
-      response.should have_selector("title", :content => "Sign in")
+      response.should have_selector('title', :content => "Sign in")
     end
   end
   
   describe "POST 'create'" do
 
-      describe "invalid signin" do
+    describe "failure" do
 
         before(:each) do
-          @attr = { :email => "email@example.com", :password => "invalid" }
+        @attr = { :email => "", :password => "" }
         end
 
         it "should re-render the new page" do
@@ -30,16 +30,16 @@ describe SessionsController do
 
         it "should have the right title" do
           post :create, :session => @attr
-          response.should have_selector("title", :content => "Sign in")
+        response.should have_selector('title', :content => "Sign in")
         end
 
-        it "should have a flash.now message" do
+      it "should have an error message" do
           post :create, :session => @attr
           flash.now[:error].should =~ /invalid/i
         end
       end
       
-    describe "with valid email and password" do
+    describe "success" do
 
       before(:each) do
         @user = Factory(:user)
@@ -57,6 +57,7 @@ describe SessionsController do
         response.should redirect_to(user_path(@user))
       end
     end
+  end
   
   describe "DELETE 'destroy'" do
 
@@ -68,4 +69,3 @@ describe SessionsController do
       end
     end
   end
-end

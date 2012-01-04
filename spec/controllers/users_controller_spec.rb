@@ -17,7 +17,7 @@ describe UsersController do
       before(:each) do
         @user = test_sign_in(Factory(:user))
         second = Factory(:user, :name => "Bob", :email => "another@example.com")
-        third  = Factory(:user, :name => "Ben", :email => "another@example.net")
+        third = Factory(:user, :name => "Ben", :email => "another@example.net")
         
         30.times do
           Factory(:user, :name => Factory.next(:name),
@@ -103,7 +103,7 @@ describe UsersController do
     it "should have the right URL" do
       get :show, :id => @user
       response.should have_selector('td>a', :content => user_path(@user),
-                                            :href    => user_path(@user))
+                                            :href => user_path(@user))
     end
     
     it "should show the user's microposts" do
@@ -133,14 +133,6 @@ describe UsersController do
         get :show, :id => @user
         response.should be_success
       end
-    end
-    
-    it "should show the user's microposts" do
-      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
-      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
-      get :show, :id => @user
-      response.should have_selector("span.content", :content => mp1.content)
-      response.should have_selector("span.content", :content => mp2.content)
     end
   end
 
@@ -272,7 +264,7 @@ describe UsersController do
       it "should change the user's attributes" do
         put :update, :id => @user, :user => @attr
         @user.reload
-        @user.name.should  == @attr[:name]
+        @user.name.should == @attr[:name]
         @user.email.should == @attr[:email]
         @user.encrypted_password.should == assigns(:user).encrypted_password
       end
