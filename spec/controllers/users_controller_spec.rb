@@ -18,14 +18,16 @@ describe UsersController do
         @user = test_sign_in(Factory(:user))
         second = Factory(:user, :name => "Bob", :email => "another@example.com")
         third = Factory(:user, :name => "Ben", :email => "another@example.net")
-        
+		
+		@users = [@user, second, third]
+	        
         30.times do
           Factory(:user, :name => Factory.next(:name),
                          :email => Factory.next(:email))
         end
       end
       
-       it "should be successful" do
+      it "should be successful" do
         get :index
         response.should be_success
       end
