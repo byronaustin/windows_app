@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'C:\Sites\rails_projects\windows_app\spec\spec_helper'
 
 describe "FriendlyForwardings" do
   it "should forward to the requested page after signin" do

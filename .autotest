@@ -1,0 +1,18 @@
+require 'C:\Sites\rails_projects\windows_app\vendor\ruby\1.9.1\gems\autotest-growl-0.2.16\lib\autotest-growl'
+Autotest::Growl::clear_terminal = false
+Autotest::Growl::show_modified_files = true
+Autotest.add_hook :initialize do |autotest|
+  autotest.add_mapping(/^spec\/controllers\/.*_spec\.rb$/) do
+    autotest.files_matching(/^spec\/controllers\/.*_spec\.rb$/)
+  end
+end
+Autotest.add_hook :initialize do |autotest|
+  autotest.add_mapping(/^spec\/models\/.*_spec\.rb$/) do
+    autotest.files_matching(/^spec\/models\/.*_spec\.rb$/)
+  end
+end
+Autotest.add_hook :initialize do |autotest|
+  autotest.add_mapping(/^spec\/requests\/.*_spec\.rb$/) do
+    autotest.files_matching(/^spec\/requests\/.*_spec\.rb$/)
+  end
+end

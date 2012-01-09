@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_filter :authenticate, :except => [:show, :new, :create]
   before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user,   :only => :destroy
+  before_filter :admin_user, :only => :destroy
   
   def index
-    @users = User.paginate(:page => params[:page])
     @title = "All users"
+    @users = User.paginate(:page => params[:page])
   end
   
   def show
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user  = User.new
+    @user = User.new
     @title = "Sign up"
   end
   

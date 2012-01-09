@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'C:\Sites\rails_projects\windows_app\spec\spec_helper'
 
 describe "Microposts" do
 

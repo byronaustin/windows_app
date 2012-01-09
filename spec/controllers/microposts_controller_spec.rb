@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'C:\Sites\rails_projects\windows_app\spec\spec_helper'
 
 describe MicropostsController do
   render_views
-  
+ 
   describe "access control" do
 
     it "should deny access to 'create'" do

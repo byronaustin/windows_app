@@ -1,8 +1,7 @@
-require 'spec_helper'
-
+require 'C:\Sites\rails_projects\windows_app\spec\spec_helper'
 describe PagesController do
   render_views
-
+  
   before(:each) do
     @base_title = "Ruby on Rails Tutorial Sample App"
   end

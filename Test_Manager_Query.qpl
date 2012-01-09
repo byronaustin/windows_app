@@ -1,0 +1,67 @@
+#!perl -w
+use CQPerlExt;
+my @data;
+my $login;
+my $password;
+
+open INPUT, "C:/ClearQuestPerlScripts/pw.txt" or die print "OPEN Login & Password document FAILED";
+
+@data = <INPUT>;
+
+$login = $data[0];
+$password = $data[1];
+chomp $login;
+chomp $password;
+
+# Start by obtaining a CQSession object and logging in to the SAMPL database
+# --------------------------------------------------------------------------
+my $session = CQSession::Build() or die "$!";
+$session->UserLogon($login, $password, "CQSR", "CQSR");
+
+# Build & Execute a Query to find all Test_Request records, retrieving the
+# "id", "Name", and "State" fields in the Query result set
+# ------------------------------------------------------------------
+# Fields to query
+#	name
+#	project
+#	part_number
+#	submit_date
+#	login_name from test_request
+#	part_number
+#	statedef
+#	users
+#	part_number
+#	state
+#	test_engineer
+# 	dbid
+my $querydef = $session->BuildQuery("Test_Manager");
+$querydef->BuildField("id");
+$querydef->BuildField("Name");
+$querydef->BuildField("State");
+my $resultset = $session->BuildResultSet($querydef);
+$resultset->Execute();
+
+print "ClearQuest ID       STATE      Name\n";
+
+# Loop through the result set, printing the field values for each Defect
+# ----------------------------------------------------------------------
+while ($resultset->MoveNext() == 1)
+{
+	$id   = $resultset->GetColumnValue(1);
+	$head = $resultset->GetColumnValue(2);
+	$state= $resultset->GetColumnValue(3);
+	printf("%-15s %-10s %s\n",$id, $state, $head);
+}
+
+# Modify the Name field of the Test_Request record whose ID is "CQSR00000959"
+# --------------------------------------------------------------------------
+#my $rec = $session->GetEntity("Test_Request", "CQSR00000959");
+#$rec->EditEntity("Modify");
+#$rec->SetFieldValue("Note_Entry", "Notes added - Modified with perl");
+#$rec->Validate();
+#$rec->Commit();
+
+# Clean up the CQSession to release the CQ license and DB Connection
+# ------------------------------------------------------------------
+CQSession::Unbuild($session);
+

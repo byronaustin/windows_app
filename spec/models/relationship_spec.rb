@@ -1,5 +1,4 @@
-require 'spec_helper'
-
+require 'C:\Sites\rails_projects\windows_app\spec\spec_helper'
 describe Relationship do
   before(:each) do
     @follower = Factory(:user)
