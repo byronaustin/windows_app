@@ -1,4 +1,4 @@
-require 'C:\Sites\rails_projects\windows_app\vendor\ruby\1.9.1\gems\spork-0.9.0.rc8-x86-mingw32\lib\spork'
+require 'C:\Sites\rails_projects\windows_app\vendor\ruby\1.9.1\gems\spork-0.9.0.rc8-x86-mingw32\lib\spork.rb'
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However, 
