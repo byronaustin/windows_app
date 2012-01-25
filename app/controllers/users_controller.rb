@@ -36,6 +36,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
+	  UserMailer.deliver_registration_confirmation(@user)
       sign_in @user
       redirect_to @user, :flash => { :success => "Welcome to the Sample App!" }
     else
